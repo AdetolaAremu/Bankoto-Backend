@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Login as AdminLogin;
 use App\Livewire\Admin\MediaCreate;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Login::class)->name('login');
 Route::get('/register', Register::class)->name('register');
 
+
 Route::prefix('admin')->group(function () {
   Route::get('/login', AdminLogin::class)->name('adminlogin');
 
@@ -22,5 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/products-create', ProductCreate::class)->name('Create Products');
     Route::get('/media', MediaView::class)->name('Media');
     Route::get('/media-create', MediaCreate::class)->name('Media');
+    Route::get('/logout', [ProductController::class, 'logoutAdmin']);
+
   });
 });
